@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Board Game Dex</title>
+    <link rel="stylesheet" href="./lib/bootstrap.min.css" />
   </head>
-  <body></body>
+  <body id="app" class="container" style="text-align: center">
+    <div class="row">
+      <h1>Steven's Board Game Dex</h1>
+      <div class="col-12">
+        <span class="col-2 me-2" v-for="game in games">{{game}}</span>
+      </div>
+    </div>
+    <script src="./lib/bootstrap.bundle.min.js"></script>
+    <script src="./lib/vue.global.js"></script>
+    <script src="./lib/marked.min.js"></script>
+    <script type="module" src="./data/gameIndex.js"></script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
 </html>
