@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Board Game Dex</title>
     <link rel="stylesheet" href="./lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body id="app" class="container" style="text-align: center">
     <div class="row">
       <h1>Steven's Board Game Dex</h1>
-      <div class="col-12">
-        <span class="col-2 me-2" v-for="game in games">{{game}}</span>
+      <div class="col-12" v-show="!displayDetails">
+        <span class="col-2 me-2" v-for="(game,index) in games">
+          <img :src="'./data/gameCover/'+index+'.png'" class="gameblock col-12" alt="" />
+          <span class="col-12">{{game}}</span>
+        </span>
       </div>
+      <div class="col-6" v-show="displayDetails">
+        <span class="col-2 me-2" v-for="(game,index) in games">
+          <img :src="'./data/gameCover/'+index+'.png'" class="gameblock col-12" alt="" />
+          <span class="col-12">{{game}}</span>
+        </span>
+      </div>
+      <div class="col-6" v-show="displayDetails" id="markdownField" style="border-left: 5px solid black"></div>
     </div>
     <script src="./lib/bootstrap.bundle.min.js"></script>
     <script src="./lib/vue.global.js"></script>
