@@ -4,19 +4,43 @@ const app = Vue.createApp({
     data() {
         return {
             games: [],
-            displayDetails: true
+            displayDetails: true,
         };
     },
     mounted() {
         this.games = games;
-        document.getElementById("markdownField").innerHTML = marked.parse('# Marked in Node.js\n\nRendered by **marked**.');
+        this.init();
     },
     computed: {
     },
     methods: {
         init() {
-            sth();
+            this.getMarkdownContentByPath("./data/markdownFiles/0_火星骰.md");
         },
+        getFileNameUnderThePathById(path, id) {
+            var directory = path;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET', directory, false); // false for synchronous request
+            xmlHttp.send(null);
+            var ret = xmlHttp.responseText;
+            var fileList = ret.split('\n');
+            for (i = 0; i < fileList.length; i++) {
+                var fileinfo = fileList[i].split(' ');
+                if (fileinfo.indexOf(id + "_") != 0) {
+                    return fileinfo[i];
+                }
+            }
+        },
+        getMarkdownContentByPath(path) {
+            fetch(path)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("markdownField").innerHTML = marked.parse(data);
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+        }
     }
 });
 app.mount('#app');

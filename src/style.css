@@ -2,3 +2,12 @@
     width : 200px;
     height : 200px; 
 }
+.exitButtn{
+    line-height: 12px;
+    width: 18px;
+    font-size: 15pt;
+    font-family: tahoma;
+    margin-top: 1px;
+    margin-right: 2px;
+    float: right;
+}

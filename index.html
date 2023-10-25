@@ -22,7 +22,10 @@
           <span class="col-12">{{game}}</span>
         </span>
       </div>
-      <div class="col-6" v-show="displayDetails" id="markdownField" style="border-left: 5px solid black"></div>
+      <div class="col-6" v-show="displayDetails" style="border-left: 5px solid black">
+        <span class="exitButtn">X</span>
+        <div id="markdownField"></div>
+      </div>
     </div>
     <script src="./lib/bootstrap.bundle.min.js"></script>
     <script src="./lib/vue.global.js"></script>
