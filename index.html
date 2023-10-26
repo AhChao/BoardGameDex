@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./lib/bootstrap.min.css" />
     <link rel="stylesheet" href="./src/style.css" />
   </head>
-  <body id="app" class="container" style="text-align: center">
+  <body id="app" class="container">
     <div class="row">
-      <h1>Steven's Board Game Dex</h1>
+      <h1 style="text-align: center">Steven's Board Game Dex</h1>
       <div class="col-6">
         <div class="row">
           <span :class="{'col-2':true, 'me-2':true, 'tag':true, 'mt-2':true, 'selectedTag':selectedTags.indexOf(tag)!=-1}" v-for="(tag,index) in tags" @click="tagClicked(tag)">{{tag}}</span>
