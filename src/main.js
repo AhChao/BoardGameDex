@@ -18,6 +18,7 @@ const app = Vue.createApp({
             this.getMarkdownContentByPath("./data/markdownFiles/0_火星骰.md");
         },
         loadMD(id) {
+            this.displayDetails = true;
             var filename = id + "_" + games[id];
             this.getMarkdownContentByPath("./data/markdownFiles/" + filename + ".md");
         },
@@ -31,7 +32,7 @@ const app = Vue.createApp({
             xmlHttp.send(null);
             var ret = xmlHttp.responseText;
             var fileList = ret.split('\n');
-            for (i = 0; i < fileList.length; i++) {
+            for (var i = 0; i < fileList.length; i++) {
                 var fileinfo = fileList[i].split(' ');
                 if (fileinfo.indexOf(id + "_") != 0) {
                     return fileinfo[i];
