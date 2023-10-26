@@ -1,7 +1,17 @@
 .tag{
-    border: solid black 2px;
+    border: solid #e6edf3 2px;
     border-radius: 5px;
 }
 .selectedTag{
     background-color: gray;
+}
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+@media screen and (prefers-color-scheme: light) {
+    body {
+        background-color: white;
+        color: black;
+    }
 }
