@@ -1,29 +1,48 @@
 import { games } from "../data/gameIndex.js";
+import { tags } from "../data/tags.js";
 const app = Vue.createApp({
     created() { },
     data() {
         return {
             games: [],
-            displayDetails: false,
+            tags: [],
+            selectedTags: [],
         };
     },
     mounted() {
         this.games = games;
+        var hs = new Set();
+        for (var i in tags) {
+            for (var j in tags[i]) {
+                hs.add(tags[i][j]);
+            }
+        }
+        this.tags = hs;
         this.init();
     },
     computed: {
+        filteredGame() {
+            var list = [];
+            for (var i in tags) {
+                for (var j in tags) {
+                    if (this.selectedTags.indexOf(tags[i][j]) != -1) {
+                        list.push(this.games[i]);
+                        break;
+                    }
+                }
+            }
+            return list;
+        }
     },
     methods: {
         init() {
             this.getMarkdownContentByPath("./data/markdownFiles/0_火星骰.md");
         },
         loadMD(id) {
-            this.displayDetails = true;
             var filename = id + "_" + games[id];
             this.getMarkdownContentByPath("./data/markdownFiles/" + filename + ".md");
         },
         exitBtnClicked() {
-            this.displayDetails = false;
         },
         getFileNameUnderThePathById(path, id) {
             var directory = path;
@@ -48,6 +67,14 @@ const app = Vue.createApp({
                 .catch(error => {
                     console.error('An error occurred:', error);
                 });
+        },
+        tagClicked(tagName) {
+            if (this.selectedTags.indexOf(tagName) == -1) {
+                this.selectedTags.push(tagName);
+            }
+            else {
+                this.selectedTags = this.selectedTags.filter(x => x != tagName);
+            }
         }
     }
 });
