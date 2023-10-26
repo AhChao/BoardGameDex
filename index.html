@@ -12,7 +12,7 @@
       <h1>Steven's Board Game Dex</h1>
       <div class="col-12" v-show="!displayDetails">
         <div class="row">
-          <span class="col-3 me-2" v-for="(game,index) in games">
+          <span class="col-3 me-2" v-for="(game,index) in games" @click="loadMD(index)">
             <img :src="'./data/gameCover/'+index+'.png'" class="col-12" alt="" />
             <span class="col-12">{{game}}</span>
           </span>
@@ -20,14 +20,14 @@
       </div>
       <div class="col-6" v-show="displayDetails">
         <div class="row">
-          <span class="col-3 me-2" v-for="(game,index) in games">
+          <span class="col-3 me-2" v-for="(game,index) in games" @click="loadMD(index)">
             <img :src="'./data/gameCover/'+index+'.png'" class="col-12" alt="" />
             <span class="col-12">{{game}}</span>
           </span>
         </div>
       </div>
       <div class="col-6" v-show="displayDetails" style="border-left: 5px solid black">
-        <span class="exitButtn">X</span>
+        <span class="exitButtn" @click="exitBtnClicked">X</span>
         <div id="markdownField"></div>
       </div>
     </div>

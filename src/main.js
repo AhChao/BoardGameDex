@@ -4,7 +4,7 @@ const app = Vue.createApp({
     data() {
         return {
             games: [],
-            displayDetails: true,
+            displayDetails: false,
         };
     },
     mounted() {
@@ -16,6 +16,13 @@ const app = Vue.createApp({
     methods: {
         init() {
             this.getMarkdownContentByPath("./data/markdownFiles/0_火星骰.md");
+        },
+        loadMD(id) {
+            var filename = id + "_" + games[id];
+            this.getMarkdownContentByPath("./data/markdownFiles/" + filename + ".md");
+        },
+        exitBtnClicked() {
+            this.displayDetails = false;
         },
         getFileNameUnderThePathById(path, id) {
             var directory = path;
