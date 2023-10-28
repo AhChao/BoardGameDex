@@ -4,4 +4,6 @@ export var games = [//game id = line number - 2;
     "欲罷不能",
     "莊園迷情",
     "路易斯與克拉克",
-    "Orion"];
+    "Orion",
+    "哈德良長城",
+    "火爆狂飆"];
