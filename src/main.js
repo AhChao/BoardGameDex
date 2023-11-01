@@ -7,6 +7,7 @@ const app = Vue.createApp({
             games: [],
             tags: [],
             selectedTags: [],
+            displayMD: true,
         };
     },
     mounted() {
@@ -19,8 +20,14 @@ const app = Vue.createApp({
         }
         this.tags = hs;
         this.init();
+        if (this.isSmallScreen) {
+            this.displayMD = false;
+        }
     },
     computed: {
+        isSmallScreen() {
+            return screen.width < 568;
+        },
         filteredGame() {
             var list = [];
             for (var i in tags) {
@@ -41,6 +48,9 @@ const app = Vue.createApp({
         loadMD(id) {
             var filename = id + "_" + games[id];
             this.getMarkdownContentByPath("./data/markdownFiles/" + filename + ".md");
+            if (!this.displayMD) {
+                this.displayMD = true;
+            }
         },
         exitBtnClicked() {
         },
@@ -75,6 +85,9 @@ const app = Vue.createApp({
             else {
                 this.selectedTags = this.selectedTags.filter(x => x != tagName);
             }
+        },
+        exitBtnClicked() {
+            this.displayMD = false;
         }
     }
 });

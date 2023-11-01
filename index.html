@@ -21,18 +21,19 @@
   <body id="app" class="container">
     <div class="row">
       <h1 style="text-align: center">Steven's Board Game Dex</h1>
-      <div class="col-6">
-        <div class="row">
+      <div class="col-12 col-sm-6" v-show="!displayMD||!isSmallScreen">
+        <div class="row" v-show="!isSmallScreen">
           <span :class="{'col-2':true, 'me-2':true, 'tag':true, 'mt-2':true, 'selectedTag':selectedTags.indexOf(tag)!=-1}" v-for="(tag,index) in tags" @click="tagClicked(tag)">{{tag}}</span>
         </div>
         <div class="row">
-          <span class="col-3 me-2" v-show="selectedTags.length == 0 || filteredGame.indexOf(game)!=-1" v-for="(game,index) in games" @click="loadMD(index)">
+          <span class="col-3 col-sm-2 me-2" v-show="selectedTags.length == 0 || filteredGame.indexOf(game)!=-1" v-for="(game,index) in games" @click="loadMD(index)">
             <img :src="'./data/gameCover/'+index+'.png'" class="col-12" alt="" />
             <span class="col-12">{{game}}</span>
           </span>
         </div>
       </div>
-      <div class="col-6" style="border-left: 5px solid #e6edf3; height: 100vh">
+      <div class="col-12 col-sm-6" :style="{'border-left' : isSmallScreen ? 'none' :'5px solid #e6edf3; height: 100vh'}" v-show="displayMD">
+        <span v-show="isSmallScreen" class="exitButtn" @click="exitBtnClicked">X</span>
         <div id="markdownField"></div>
       </div>
     </div>
