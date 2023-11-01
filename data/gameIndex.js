@@ -14,4 +14,6 @@ export var games = [//game id = line number - 2;
     "吸血鬼對獵人",
     "NumberDrop",
     "數字戰爭",
-    "阿納克遺跡",];
+    "阿納克遺跡",
+    "BurgleBros",
+];
