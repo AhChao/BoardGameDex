@@ -17,4 +17,5 @@ export var games = [//game id = line number - 2;
     "阿納克遺跡",
     "BurgleBros",
     "SCOUT",
+    "截碼戰"
 ];
