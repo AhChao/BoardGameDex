@@ -32,9 +32,13 @@ const app = Vue.createApp({
             var list = [];
             for (var i in tags) {
                 for (var j in tags) {
-                    if (this.selectedTags.indexOf(tags[i][j]) != -1) {
-                        list.push(this.games[i]);
-                        break;
+                    try {
+                        if (this.selectedTags.indexOf(tags[i][j]) != -1) {
+                            list.push(this.games[i]);
+                            break;
+                        }    
+                    } catch (error) {
+                        continue;
                     }
                 }
             }
@@ -42,6 +46,9 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        onImageError(event) {
+            event.target.src = "./img/bgPlaceHolder.png";
+        },
         init() {
             this.getMarkdownContentByPath("./data/markdownFiles/0_火星骰.md");
         },
@@ -51,6 +58,21 @@ const app = Vue.createApp({
             if (!this.displayMD) {
                 this.displayMD = true;
             }
+        },
+        addSpaces(str) {
+            return str
+                .replace(/([a-z])([A-Z])/g, '$1 $2')
+                .replace(/([A-Z])([0-9])/g, '$1 $2')
+                .replace(/([0-9])([A-Z])/g, '$1 $2')
+                .replace(/([&+\/])/g, ' $1 ')
+                .replace(/\s{2,}/g, ' ');
+        },
+        removeSpaces(str) {
+            return str
+              .toLowerCase()
+              .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+                index === 0 ? match.toLowerCase() : match.toUpperCase()
+              );
         },
         exitBtnClicked() {
         },
@@ -63,6 +85,7 @@ const app = Vue.createApp({
             var fileList = ret.split('\n');
             for (var i = 0; i < fileList.length; i++) {
                 var fileinfo = fileList[i].split(' ');
+                console.log(fileinfo);
                 if (fileinfo.indexOf(id + "_") != 0) {
                     return fileinfo[i];
                 }
