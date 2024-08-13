@@ -8,6 +8,7 @@ const app = Vue.createApp({
             tags: [],
             selectedTags: [],
             displayMD: true,
+            searchQuery:'',
         };
     },
     mounted() {
